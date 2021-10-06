@@ -11,8 +11,11 @@ public class PortOfficer extends CheckPerformer implements portRole{
 
     @Override
     public boolean portCheck(String name, boolean pcrStatus, Optional<List<SpecialCondition>> specialConditions) {
+        System.out.println(name + " reached (Port Officer)");
+        System.out.println("Data Seen:");
+        System.out.println("Name: " + name + ", PCR Status: " + pcrStatus);
         if(super.acceptedPassengerNames.contains((name))){
-            if(!pcrStatus && specialConditions.isEmpty())
+            if(!pcrStatus && specialConditions==null)
                 return true;
             else if(!specialConditions.get().contains(SpecialCondition.CRITICAL_CONDITION))
                 return true;

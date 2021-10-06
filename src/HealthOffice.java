@@ -16,10 +16,35 @@ public class HealthOffice extends CheckPerformer implements healthRoles{
             boolean hasFever,
             boolean hasCough,
             Optional<List<MedicalAllergy>> medicalAllergies) {
+        System.out.println(name + " reached (Health Officer)");
+        System.out.println("Data Seen:");
+        if(hasFever && hasCough)
+            System.out.println(
+                    "Name: " + name +
+                    "PCR Status: " + pcrStatus+
+                    "Has Fever & Cough");
+        else if(hasFever){
+            System.out.println(
+                    "Name: " + name +
+                            "PCR Status: " + pcrStatus+
+                            "Has Fever & no Cough");
+        } else if(hasCough){
+            System.out.println(
+                    "Name: " + name +
+                            "PCR Status: " + pcrStatus+
+                            "Has Cough & no Fever");
+        } else {
+            System.out.println(
+                    "Name: " + name +
+                            "PCR Status: " + pcrStatus+
+                            "Doesn't have Fever or Cough");
+        }
+
+
 
         if(super.acceptedPassengerNames.contains((name)) && !hasFever && !hasCough){
-            if(!pcrStatus && specialConditions.isEmpty()){
-                if(medicalAllergies.isEmpty())
+            if(!pcrStatus && specialConditions==null){
+                if(medicalAllergies==null)
                     return true;
                 else if(!medicalAllergies.get().contains(MedicalAllergy.CRITICAL_ALLERGY))
                     return true;
